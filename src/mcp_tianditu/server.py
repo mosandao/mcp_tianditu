@@ -1,6 +1,7 @@
 from mcp.server.fastmcp import FastMCP, Context
 from mcp import types
 from typing import Any
+import os.path
 from .tdapi import api_addr_to_geocode, api_drive_plan, api_geocode_to_addr, api_search, api_trans_plan
  
 # 创建MCP服务器实例
@@ -266,7 +267,8 @@ async def admin_code() -> str:
         中国行政区划编码，包括省市区。
 
     """
-    with open('resources/AdminCode.txt', 'r', encoding='utf-8') as f:
+    resource_path = os.path.join(os.path.dirname(__file__), 'resources', 'AdminCode.txt')
+    with open(resource_path, 'r', encoding='utf-8') as f:
         return f.read()
 
 @mcp.resource('tdt://data-types', name='数据分类编码表')
@@ -279,7 +281,8 @@ async def data_type() -> str:
         数据分类编码表
 
     """
-    with open('resources/Type.txt', 'r', encoding='utf-8') as f:
+    resource_path = os.path.join(os.path.dirname(__file__), 'resources', 'Type.txt')
+    with open(resource_path, 'r', encoding='utf-8') as f:
         return f.read()
 
  
