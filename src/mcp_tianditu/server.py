@@ -282,8 +282,8 @@ async def data_type() -> str:
     with open('resources/Type.txt', 'r', encoding='utf-8') as f:
         return f.read()
 
-@mcp.list_resources
-async def list_resources() -> list[types.Resource]:
+@mcp.list_resources()
+async def handle_list_resources() -> list[types.Resource]:
     """
     Name:
         资源列表
