@@ -1,4 +1,5 @@
 from mcp.server.fastmcp import FastMCP, Context
+from mcp import types
 from typing import Any
 from .tdapi import api_addr_to_geocode, api_drive_plan, api_geocode_to_addr, api_search, api_trans_plan
  
@@ -255,7 +256,7 @@ async def trans_plan(
     """
     return await api_trans_plan(f"{from_longitude},{from_latitude}", f"{to_longitude},{to_latitude}")
 
-@mcp.resource('tdt://admin-code', name='行政区划编码表')
+@mcp.resource('tdt://division-codes', name='行政区划编码表')
 async def admin_code() -> str:
     """
     Name:
@@ -268,7 +269,7 @@ async def admin_code() -> str:
     with open('resources/AdminCode.txt', 'r', encoding='utf-8') as f:
         return f.read()
 
-@mcp.resource('tdt://data-type', name='数据分类编码表')
+@mcp.resource('tdt://data-types', name='数据分类编码表')
 async def data_type() -> str:
     """
     Name:
@@ -280,6 +281,27 @@ async def data_type() -> str:
     """
     with open('resources/Type.txt', 'r', encoding='utf-8') as f:
         return f.read()
+
+@mcp.list_resources
+async def list_resources() -> list[types.Resource]:
+    """
+    Name:
+        资源列表
+    Description:
+        资源列表
+    """
+    return [
+        types.Resource(
+            name="行政区划编码表",
+            uri="tdt://division-codes",
+            description="中国行政区划编码，包括省市区。"
+        ),
+        types.Resource(
+            name="数据分类编码表",
+            uri="tdt://data-types",
+            description="数据分类编码表"
+        )
+    ]
  
 if __name__ == "__main__":
     mcp.run()
