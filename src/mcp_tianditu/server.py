@@ -282,26 +282,6 @@ async def data_type() -> str:
     with open('resources/Type.txt', 'r', encoding='utf-8') as f:
         return f.read()
 
-@mcp.list_resources()
-async def handle_list_resources() -> list[types.Resource]:
-    """
-    Name:
-        资源列表
-    Description:
-        资源列表
-    """
-    return [
-        types.Resource(
-            name="行政区划编码表",
-            uri="tdt://division-codes",
-            description="中国行政区划编码，包括省市区。"
-        ),
-        types.Resource(
-            name="数据分类编码表",
-            uri="tdt://data-types",
-            description="数据分类编码表"
-        )
-    ]
  
 if __name__ == "__main__":
     mcp.run()
