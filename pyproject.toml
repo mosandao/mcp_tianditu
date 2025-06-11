@@ -10,7 +10,6 @@ authors = [
 ]
 description = "天地图MCP服务"
 readme = "README.md"
-requires-python = ">=3.10"
 dependencies = [
     "mcp[cli]>=1.6.0",
     "httpx"
